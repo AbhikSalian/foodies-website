@@ -30,7 +30,7 @@ Follow these steps to get the application up and running:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/AkashAcharya03/Foodies-Shop.git
+    git clone https://github.com/AbhikSalian/foodies-website.git
     ```
 
 2. Navigate into the project directory:
