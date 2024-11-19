@@ -1,0 +1,27 @@
+{% for wishlist in wishlists %}
+<h2>Wishlist Updated: {{ wishlist.updated }}</h2>
+<p>Wishlist created on: {{ wishlist.created }}</p>
+
+<!-- Add a form for deleting the wishlist -->
+<form action="{% url 'remove_wishlist' wishlist.id %}" method="POST" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Remove Wishlist</button>
+</form>
+
+{% for product in wishlist.product.all %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product.images.url }}" alt="Image" class="img-fluid product-img"/>
+        </div>
+        <div class="col-md-6">
+            <h3>Cost: Rs.{{ product.cost }}</h3>
+            <p>{{ product.category }}</p>
+        </div>
+    </div>
+</div>
+{% empty %}
+<p>No products in this wishlist.</p>
+{% endfor %}
+<hr>
+{% endfor %}

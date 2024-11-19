@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block body_block %}
+    {% if view_products %}
+        {% for item in view_products %}
+            <div class="container mt-5">
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <!-- Display product-related information -->
+                        <h3>{{ item.product.name }}</h3>
+                        <h6>Cost: Rs.{{ item.product.cost }}</h6>
+                        <p>{{ item.product.category }}</p>
+                        
+                        <!-- Form to remove product using wishlist ID -->
+                        <form action="{% url 'removewish' item.wishlist_id %}" method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Your wishlist is empty.</p>
+    {% endif %}
+{% endblock %}

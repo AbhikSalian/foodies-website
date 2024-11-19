@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<!-- Offers Section -->
+<div class="container my-5 text-center">
+  <h2 class="display-4 text-primary mb-4">Exclusive Offers</h2>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card shadow-lg">
+        <img src="{% static 'images/Food.jpg' %}" class="card-img-top" alt="Offer 1">
+        <div class="card-body">
+          <h5 class="card-title">Special Discount on Food</h5>
+          <p class="card-text">Up to 50% off on selected dishes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card shadow-lg">
+        <img src="{% static 'images/Foodie1.jpg' %}" class="card-img-top" alt="Offer 2">
+        <div class="card-body">
+          <h5 class="card-title">Combo Offer</h5>
+          <p class="card-text">Enjoy your favorite meals with special combo pricing.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card shadow-lg">
+        <img src="{% static 'images/Food.jpg' %}" class="card-img-top" alt="Offer 3">
+        <div class="card-body">
+          <h5 class="card-title">Limited Time Offer</h5>
+          <p class="card-text">Get a free dessert with every meal ordered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Food Place Cards -->
+<div class="container py-5">
+  <h1 class="text-center text-primary mb-5">Food Items</h1>
+  <div class="row">
+    {% for item in Foodiees %}
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-body">
+          <h5 class="card-title text-center text-primary">{{ item.name }} - <span class="text-success">₹{{ item.cost }}</span></h5>
+          <p class="card-text text-muted">{{ item.category }}</p>
+          <div class="d-flex justify-content-between">
+            <!-- View Product Button with Icon -->
+            <a href="{% url 'Product' id=item.id %}" class="btn btn-primary w-48">
+              <i class="fas fa-eye"></i> View Product
+            </a>
+            <!-- Add to Wish List Button with Icon -->
+            <a href="{% url 'addWish' id=item.id %}" class="btn btn-secondary w-48">
+              <i class="fas fa-heart"></i> 
+              Wish List
+            </a>
+            <!-- Add to Cart Button with Icon -->
+            <a href="{% url 'addCart' id=item.id %}" class="btn btn-success w-48">
+              <i class="fas fa-cart-plus"></i>Add to Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Footer -->
+
+{% endblock %}
